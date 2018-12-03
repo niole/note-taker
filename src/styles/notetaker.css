@@ -1,0 +1,8 @@
+div.note-taker-3-side-nav {
+  height: 100vh;
+  background: green;
+  position: fixed;
+  width: 300px;
+  left: 0px;
+  top: 0px;
+}
