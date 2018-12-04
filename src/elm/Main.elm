@@ -2,8 +2,7 @@ import Browser
 import List exposing (map)
 import Html exposing (Html, button, input, div, text)
 import Html.Events exposing (onInput)
-
-note content = div [] [text content]
+import Elm.Note exposing (note)
 
 type alias AppState =
   {
