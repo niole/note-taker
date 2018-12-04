@@ -1,23 +1,38 @@
 import Browser
-import Html exposing (Html, button, div, text)
-import Html.Events exposing (onClick)
+import List exposing (map)
+import Html exposing (Html, button, input, div, text)
+import Html.Events exposing (onInput)
+
+note content = div [] [text content]
+
+type alias AppState =
+  {
+    notes : List String
+  }
+
+initialState : AppState
+initialState = { notes = ["note one"]}
 
 main =
-  Browser.sandbox { init = 0, update = update, view = view }
+  Browser.sandbox {
+    init = initialState,
+    update = update,
+    view = view
+  }
 
-type Msg = Increment | Decrement
+type Msg = Add String
 
+update : Msg -> AppState -> AppState
 update msg model =
   case msg of
-    Increment ->
-      model + 2
+    Add newNote -> { notes = model.notes ++ [newNote] }
 
-    Decrement ->
-      model - 2
+handleKeyPress : String -> Msg
+handleKeyPress text = Add text
 
+view : AppState -> Html Msg
 view model =
-  div []
-    [ button [ onClick Decrement ] [ text "Decrement" ]
-    , div [] [ text (String.fromInt model) ]
-    , button [ onClick Increment ] [ text "Increment" ]
-    ]
+  div [] [
+    div [] (map note model.notes)
+    , input [onInput Add] []
+  ]
