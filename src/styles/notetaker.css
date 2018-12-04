@@ -6,3 +6,8 @@ div.note-taker-3-side-nav {
   left: 0px;
   top: 0px;
 }
+
+.divider {
+  height: 1px;
+  background: navy;
+}
